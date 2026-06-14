@@ -1,0 +1,32 @@
+{
+  "name": "gamerfied-highlights",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "worker:analyze": "tsx scripts/analyze-worker.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@laihoe/demoparser2": "^0.41.2",
+    "@prisma/client": "^5.22.0",
+    "bullmq": "^5.76.5",
+    "demofile": "^2.10.0",
+    "ioredis": "^5.10.1",
+    "next": "^14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "prisma": "^5.22.0",
+    "tsx": "^4.20.6",
+    "typescript": "^6.0.3"
+  }
+}

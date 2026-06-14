@@ -1,0 +1,279 @@
+[
+  {
+    "name": "assets/1a8e835db95447be9e4549f8d3959598",
+    "designSystem": {
+      "displayName": "Obsidian High-Contrast",
+      "styleGuidelines": "## Brand & Style\nThe design system embodies a premium, developer-centric aesthetic characterized by high-contrast minimalism. It is designed for high-performance tools where focus is paramount. By utilizing a pure black foundation, the UI recedes into the background, allowing content and \"highlights\" to take center stage.\n\nThe style draws from the **Minimalism** and **Modern Corporate** movements, specifically echoing the precision of technical tools like Linear and Raycast. The emotional response is one of total control, speed, and refined professionalism. Visual noise is aggressively eliminated, favoring generous whitespace and razor-sharp clarity over decorative elements.\n\n## Layout & Spacing\nThe layout follows a **Fluid Grid** model with a maximum container width of 1200px for desktop. It uses an 8px base unit system to ensure consistent proportions.\n- **Whitespace:** Elements are given significant breathing room to prevent the interface from feeling cramped, a hallmark of premium technical tools.\n- **Alignment:** Strict adherence to a 12-column grid on desktop.\n- **Mobile:** Margins shrink to 16px, and multi-column layouts reflow to a single vertical stack. \n- **Consistency:** Padding inside containers (like cards or modals) should consistently be 24px (`lg`) to maintain a sense of openness.\n\n## Elevation & Depth\nDepth is created through **Tonal Layering** rather than heavy shadows. In a pure black environment, shadows are often invisible or muddy.\n- **Layering:** Level 0 is pure black. Level 1 (Surfaces) is a very dark gray (`#0A0A0A`). Level 2 (Modals/Popovers) is slightly lighter (`#141414`).\n- **Outlines:** Subtle, low-opacity borders (`1px solid #1F1F1F`) define the edges of containers. \n- **Active State:** Instead of shadows, use a subtle white inner-glow or a change in border brightness to indicate elevation or focus.\n\n## Components\n- **Buttons:** Primary buttons are pure white with black text. Secondary buttons are transparent with a thin white or dark gray border. High-impact \"success\" actions use the Green accent.\n- **Input Fields:** Backgrounds are slightly lighter than the main page (`#0A0A0A`). On focus, the border transitions from dark gray to pure white.\n- **Chips/Badges:** Small, subtle containers with a `#1A1A1A` background. If representing an active filter or \"live\" state, use the Green accent color for the text or a small leading dot.\n- **Cards:** No shadows. Defined by a `#1F1F1F` border and a `#0A0A0A` background.\n- **Command Palette:** Inspired by Raycast, this component is central. It should feature a backdrop blur of 20px over a semi-transparent dark surface to provide a sense of focus and overlay.\n- **Lists:** Clean lines with `#1F1F1F` dividers. Hover states should use a subtle background shift to `#141414`.",
+      "theme": {
+        "colorMode": "DARK",
+        "font": "INTER",
+        "roundness": "ROUND_EIGHT",
+        "customColor": "#ffffff",
+        "headlineFont": "INTER",
+        "bodyFont": "INTER",
+        "labelFont": "INTER",
+        "namedColors": {
+          "background": "#121414",
+          "error": "#ffb4ab",
+          "error_container": "#93000a",
+          "inverse_on_surface": "#303031",
+          "inverse_primary": "#5d5f5f",
+          "inverse_surface": "#e3e2e2",
+          "on_background": "#e3e2e2",
+          "on_error": "#690005",
+          "on_error_container": "#ffdad6",
+          "on_primary": "#2f3131",
+          "on_primary_container": "#636565",
+          "on_primary_fixed": "#1a1c1c",
+          "on_primary_fixed_variant": "#454747",
+          "on_secondary": "#013a00",
+          "on_secondary_container": "#027100",
+          "on_secondary_fixed": "#002200",
+          "on_secondary_fixed_variant": "#015300",
+          "on_surface": "#e3e2e2",
+          "on_surface_variant": "#c4c7c8",
+          "on_tertiary": "#313030",
+          "on_tertiary_container": "#656464",
+          "on_tertiary_fixed": "#1c1b1b",
+          "on_tertiary_fixed_variant": "#474746",
+          "outline": "#8e9192",
+          "outline_variant": "#444748",
+          "primary": "#ffffff",
+          "primary_container": "#e2e2e2",
+          "primary_fixed": "#e2e2e2",
+          "primary_fixed_dim": "#c6c6c7",
+          "secondary": "#edffe1",
+          "secondary_container": "#28ff1d",
+          "secondary_fixed": "#77ff61",
+          "secondary_fixed_dim": "#02e600",
+          "surface": "#121414",
+          "surface_bright": "#383939",
+          "surface_container": "#1f2020",
+          "surface_container_high": "#292a2a",
+          "surface_container_highest": "#343535",
+          "surface_container_low": "#1b1c1c",
+          "surface_container_lowest": "#0d0e0f",
+          "surface_dim": "#121414",
+          "surface_tint": "#c6c6c7",
+          "surface_variant": "#343535",
+          "tertiary": "#ffffff",
+          "tertiary_container": "#e5e2e1",
+          "tertiary_fixed": "#e5e2e1",
+          "tertiary_fixed_dim": "#c8c6c5"
+        },
+        "designMd": "---\nname: Obsidian High-Contrast\ncolors:\n  surface: '#121414'\n  surface-dim: '#121414'\n  surface-bright: '#383939'\n  surface-container-lowest: '#0d0e0f'\n  surface-container-low: '#1b1c1c'\n  surface-container: '#1f2020'\n  surface-container-high: '#292a2a'\n  surface-container-highest: '#343535'\n  on-surface: '#e3e2e2'\n  on-surface-variant: '#c4c7c8'\n  inverse-surface: '#e3e2e2'\n  inverse-on-surface: '#303031'\n  outline: '#8e9192'\n  outline-variant: '#444748'\n  surface-tint: '#c6c6c7'\n  primary: '#ffffff'\n  on-primary: '#2f3131'\n  primary-container: '#e2e2e2'\n  on-primary-container: '#636565'\n  inverse-primary: '#5d5f5f'\n  secondary: '#edffe1'\n  on-secondary: '#013a00'\n  secondary-container: '#28ff1d'\n  on-secondary-container: '#027100'\n  tertiary: '#ffffff'\n  on-tertiary: '#313030'\n  tertiary-container: '#e5e2e1'\n  on-tertiary-container: '#656464'\n  error: '#ffb4ab'\n  on-error: '#690005'\n  error-container: '#93000a'\n  on-error-container: '#ffdad6'\n  primary-fixed: '#e2e2e2'\n  primary-fixed-dim: '#c6c6c7'\n  on-primary-fixed: '#1a1c1c'\n  on-primary-fixed-variant: '#454747'\n  secondary-fixed: '#77ff61'\n  secondary-fixed-dim: '#02e600'\n  on-secondary-fixed: '#002200'\n  on-secondary-fixed-variant: '#015300'\n  tertiary-fixed: '#e5e2e1'\n  tertiary-fixed-dim: '#c8c6c5'\n  on-tertiary-fixed: '#1c1b1b'\n  on-tertiary-fixed-variant: '#474746'\n  background: '#121414'\n  on-background: '#e3e2e2'\n  surface-variant: '#343535'\ntypography:\n  headline-xl:\n    fontFamily: Inter\n    fontSize: 48px\n    fontWeight: '700'\n    lineHeight: 56px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Inter\n    fontSize: 32px\n    fontWeight: '600'\n    lineHeight: 40px\n    letterSpacing: -0.02em\n  headline-lg-mobile:\n    fontFamily: Inter\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Inter\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-lg:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  body-md:\n    fontFamily: Inter\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 20px\n  label-md:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '500'\n    lineHeight: 16px\n    letterSpacing: 0.01em\n  label-sm:\n    fontFamily: Inter\n    fontSize: 11px\n    fontWeight: '600'\n    lineHeight: 14px\n    letterSpacing: 0.03em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  unit: 4px\n  xs: 4px\n  sm: 8px\n  md: 16px\n  lg: 24px\n  xl: 48px\n  container-max: 1200px\n  gutter: 24px\n  margin: 32px\n---\n\n## Brand & Style\nThe design system embodies a premium, developer-centric aesthetic characterized by high-contrast minimalism. It is designed for high-performance tools where focus is paramount. By utilizing a pure black foundation, the UI recedes into the background, allowing content and \"highlights\" to take center stage.\n\nThe style draws from the **Minimalism** and **Modern Corporate** movements, specifically echoing the precision of technical tools like Linear and Raycast. The emotional response is one of total control, speed, and refined professionalism. Visual noise is aggressively eliminated, favoring generous whitespace and razor-sharp clarity over decorative elements.\n\n## Colors\nThis design system utilizes a strictly limited palette to maintain its high-contrast identity.\n- **Base:** The background is absolute pure black (`#000000`) to create infinite depth on OLED displays.\n- **Primary:** Pure white (`#FFFFFF`) is used for primary text and high-priority actions to ensure maximum legibility.\n- **Success/Active:** The \"Neon Green\" (`#00FF00`) is used sparingly. It is reserved exclusively for success states, active connectivity indicators, or signifying a completed \"highlight.\"\n- **Surfaces:** Containers and surfaces use deep grays (starting at `#0A0A0A`) to provide subtle separation without breaking the dark immersion.\n- **Borders:** Low-contrast borders (`#1F1F1F`) are used for structural definition.\n\n## Typography\nThe system relies entirely on **Inter**, leveraging its geometric precision and excellent legibility at small scales. \n- **Headlines:** Use tight letter spacing and bold weights to create a sense of authority. \n- **Body:** Standardized at 16px and 14px for optimal reading against a dark background.\n- **Labels:** Small caps or increased letter spacing are used for metadata to distinguish it from body content.\n- **Contrast:** Always use pure white for primary content, and a mid-tone gray (`#888888`) for secondary or \"de-emphasized\" information.\n\n## Layout & Spacing\nThe layout follows a **Fluid Grid** model with a maximum container width of 1200px for desktop. It uses an 8px base unit system to ensure consistent proportions.\n- **Whitespace:** Elements are given significant breathing room to prevent the interface from feeling cramped, a hallmark of premium technical tools.\n- **Alignment:** Strict adherence to a 12-column grid on desktop.\n- **Mobile:** Margins shrink to 16px, and multi-column layouts reflow to a single vertical stack. \n- **Consistency:** Padding inside containers (like cards or modals) should consistently be 24px (`lg`) to maintain a sense of openness.\n\n## Elevation & Depth\nDepth is created through **Tonal Layering** rather than heavy shadows. In a pure black environment, shadows are often invisible or muddy.\n- **Layering:** Level 0 is pure black. Level 1 (Surfaces) is a very dark gray (`#0A0A0A`). Level 2 (Modals/Popovers) is slightly lighter (`#141414`).\n- **Outlines:** Subtle, low-opacity borders (`1px solid #1F1F1F`) define the edges of containers. \n- **Active State:** Instead of shadows, use a subtle white inner-glow or a change in border brightness to indicate elevation or focus.\n\n## Shapes\nThe shape language is sophisticated and modern. A standard radius of **8px** (Level 2) is applied to all primary UI elements including buttons, input fields, and cards. \n- **Consistency:** Larger containers like modals or main content areas should use 16px (`rounded-lg`) to maintain a nested visual harmony.\n- **Interactive Elements:** Small elements like tags or badges may use a slightly smaller radius (4px) to appear sharper and more technical.\n\n## Components\n- **Buttons:** Primary buttons are pure white with black text. Secondary buttons are transparent with a thin white or dark gray border. High-impact \"success\" actions use the Green accent.\n- **Input Fields:** Backgrounds are slightly lighter than the main page (`#0A0A0A`). On focus, the border transitions from dark gray to pure white.\n- **Chips/Badges:** Small, subtle containers with a `#1A1A1A` background. If representing an active filter or \"live\" state, use the Green accent color for the text or a small leading dot.\n- **Cards:** No shadows. Defined by a `#1F1F1F` border and a `#0A0A0A` background.\n- **Command Palette:** Inspired by Raycast, this component is central. It should feature a backdrop blur of 20px over a semi-transparent dark surface to provide a sense of focus and overlay.\n- **Lists:** Clean lines with `#1F1F1F` dividers. Hover states should use a subtle background shift to `#141414`.",
+        "colorVariant": "FIDELITY",
+        "overridePrimaryColor": "#ffffff",
+        "overrideSecondaryColor": "#00ff00",
+        "overrideTertiaryColor": "#1a1a1a",
+        "overrideNeutralColor": "#888888",
+        "spacingScale": 2,
+        "typography": {
+          "body-lg": {
+            "fontFamily": "Inter",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "lineHeight": "24px"
+          },
+          "body-md": {
+            "fontFamily": "Inter",
+            "fontSize": "14px",
+            "fontWeight": "400",
+            "lineHeight": "20px"
+          },
+          "headline-lg": {
+            "fontFamily": "Inter",
+            "fontSize": "32px",
+            "fontWeight": "600",
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em"
+          },
+          "headline-lg-mobile": {
+            "fontFamily": "Inter",
+            "fontSize": "24px",
+            "fontWeight": "600",
+            "lineHeight": "32px",
+            "letterSpacing": "-0.01em"
+          },
+          "headline-md": {
+            "fontFamily": "Inter",
+            "fontSize": "20px",
+            "fontWeight": "600",
+            "lineHeight": "28px"
+          },
+          "headline-xl": {
+            "fontFamily": "Inter",
+            "fontSize": "48px",
+            "fontWeight": "700",
+            "lineHeight": "56px",
+            "letterSpacing": "-0.02em"
+          },
+          "label-md": {
+            "fontFamily": "Inter",
+            "fontSize": "12px",
+            "fontWeight": "500",
+            "lineHeight": "16px",
+            "letterSpacing": "0.01em"
+          },
+          "label-sm": {
+            "fontFamily": "Inter",
+            "fontSize": "11px",
+            "fontWeight": "600",
+            "lineHeight": "14px",
+            "letterSpacing": "0.03em"
+          }
+        },
+        "spacing": {
+          "container-max": "1200px",
+          "gutter": "24px",
+          "lg": "24px",
+          "margin": "32px",
+          "md": "16px",
+          "sm": "8px",
+          "unit": "4px",
+          "xl": "48px",
+          "xs": "4px"
+        },
+        "headlineFontFamily": "Inter",
+        "bodyFontFamily": "Inter",
+        "labelFontFamily": "Inter"
+      }
+    },
+    "version": "1"
+  },
+  {
+    "name": "assets/8686eb33eca54f6398009dc6c4997c0a",
+    "designSystem": {
+      "displayName": "Monolith Gaming Intelligence",
+      "styleGuidelines": "## Brand & Style\nThe design system is built on a philosophy of \"Radical Clarity.\" It rejects traditional gaming aesthetics\u2014neon lights, aggressive slants, and cluttered HUDs\u2014in favor of a premium, editorial experience inspired by modern productivity tools and high-end hardware design.\n\nThe target audience is the \"sophisticated gamer\" who values performance data and content highlights but demands a calm, focused environment. The style is **Minimalist / Modern Corporate**, utilizing high-contrast monochromatic themes, significant negative space, and precision-engineered typography to elevate the content. It feels more like an art gallery for highlights than a typical social platform.\n\n## Layout & Spacing\nThe layout follows a **Fixed Grid** model on desktop (12 columns) and a fluid 4-column model on mobile. \n\nWhitespace is treated as a functional component. Avoid filling empty spaces; instead, use large margins to isolate content and create focus. \n- **Alignment:** Strict left-alignment for all headers and body text.\n- **Rhythm:** All vertical spacing should be multiples of 8px. Use 64px margins for desktop sections to create a premium, \"breathable\" feel.\n- **Reflow:** On mobile, margins shrink to 24px, and all multi-column stacks collapse into a single vertical stream.\n\n## Elevation & Depth\nThis design system avoids shadows entirely to maintain a flat, modern aesthetic. \n\n- **Tonal Layers:** Depth is communicated through 1px solid borders (#E5E5E5). \n- **Z-Index:** For modals or pop-overs, use a solid white background with a slightly thicker 2px black border to indicate focus.\n- **Interaction:** Hover states do not use lifts or glows; they trigger color inversions (e.g., a white button background turns black) or subtle opacity shifts.\n\n## Components\n\n- **Buttons:** Primary buttons are solid #000000 with #FFFFFF text. Secondary buttons are #FFFFFF with a 1px #E5E5E5 border. No gradients. High-contrast only.\n- **Cards:** Flat #FFFFFF background with a 1px #E5E5E5 border. Padding should be generous (min 24px).\n- **Input Fields:** Minimalist design with only a bottom border (2px) that turns black on focus. No background fills.\n- **Chips/Tags:** Small, uppercase text in #737373 with a 4px rounded corner. Used for game categories or timestamps.\n- **Lists:** Clean rows separated by 1px horizontal lines. No zebra-striping. High vertical padding (16px-24px per row).\n- **Video Thumbnails:** 12px rounded corners. No play icon overlays; use a subtle hover state that reveals a \"Watch\" label in the corner.\n- **Status Indicators:** A small 8px circle. Only use #22C55E for \"Ready\" or \"Success\" states; all other states are neutral grey.",
+      "theme": {
+        "colorMode": "LIGHT",
+        "font": "INTER",
+        "roundness": "ROUND_EIGHT",
+        "customColor": "#000000",
+        "headlineFont": "INTER",
+        "bodyFont": "INTER",
+        "labelFont": "INTER",
+        "namedColors": {
+          "background": "#f9f9f9",
+          "error": "#ba1a1a",
+          "error_container": "#ffdad6",
+          "inverse_on_surface": "#f1f1f1",
+          "inverse_primary": "#c6c6c6",
+          "inverse_surface": "#303030",
+          "on_background": "#1b1b1b",
+          "on_error": "#ffffff",
+          "on_error_container": "#93000a",
+          "on_primary": "#ffffff",
+          "on_primary_container": "#848484",
+          "on_primary_fixed": "#1b1b1b",
+          "on_primary_fixed_variant": "#474747",
+          "on_secondary": "#ffffff",
+          "on_secondary_container": "#616363",
+          "on_secondary_fixed": "#1a1c1c",
+          "on_secondary_fixed_variant": "#454747",
+          "on_surface": "#1b1b1b",
+          "on_surface_variant": "#4c4546",
+          "on_tertiary": "#ffffff",
+          "on_tertiary_container": "#848484",
+          "on_tertiary_fixed": "#1b1b1b",
+          "on_tertiary_fixed_variant": "#474747",
+          "outline": "#7e7576",
+          "outline_variant": "#cfc4c5",
+          "primary": "#000000",
+          "primary_container": "#1b1b1b",
+          "primary_fixed": "#e2e2e2",
+          "primary_fixed_dim": "#c6c6c6",
+          "secondary": "#5d5f5f",
+          "secondary_container": "#dfe0e0",
+          "secondary_fixed": "#e2e2e2",
+          "secondary_fixed_dim": "#c6c6c7",
+          "surface": "#f9f9f9",
+          "surface_bright": "#f9f9f9",
+          "surface_container": "#eeeeee",
+          "surface_container_high": "#e8e8e8",
+          "surface_container_highest": "#e2e2e2",
+          "surface_container_low": "#f3f3f3",
+          "surface_container_lowest": "#ffffff",
+          "surface_dim": "#dadada",
+          "surface_tint": "#5e5e5e",
+          "surface_variant": "#e2e2e2",
+          "tertiary": "#000000",
+          "tertiary_container": "#1b1b1b",
+          "tertiary_fixed": "#e2e2e2",
+          "tertiary_fixed_dim": "#c6c6c6"
+        },
+        "designMd": "---\nname: Monolith Gaming Intelligence\ncolors:\n  surface: '#f9f9f9'\n  surface-dim: '#dadada'\n  surface-bright: '#f9f9f9'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f3f3f3'\n  surface-container: '#eeeeee'\n  surface-container-high: '#e8e8e8'\n  surface-container-highest: '#e2e2e2'\n  on-surface: '#1b1b1b'\n  on-surface-variant: '#4c4546'\n  inverse-surface: '#303030'\n  inverse-on-surface: '#f1f1f1'\n  outline: '#7e7576'\n  outline-variant: '#cfc4c5'\n  surface-tint: '#5e5e5e'\n  primary: '#000000'\n  on-primary: '#ffffff'\n  primary-container: '#1b1b1b'\n  on-primary-container: '#848484'\n  inverse-primary: '#c6c6c6'\n  secondary: '#5d5f5f'\n  on-secondary: '#ffffff'\n  secondary-container: '#dfe0e0'\n  on-secondary-container: '#616363'\n  tertiary: '#000000'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#1b1b1b'\n  on-tertiary-container: '#848484'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#e2e2e2'\n  primary-fixed-dim: '#c6c6c6'\n  on-primary-fixed: '#1b1b1b'\n  on-primary-fixed-variant: '#474747'\n  secondary-fixed: '#e2e2e2'\n  secondary-fixed-dim: '#c6c6c7'\n  on-secondary-fixed: '#1a1c1c'\n  on-secondary-fixed-variant: '#454747'\n  tertiary-fixed: '#e2e2e2'\n  tertiary-fixed-dim: '#c6c6c6'\n  on-tertiary-fixed: '#1b1b1b'\n  on-tertiary-fixed-variant: '#474747'\n  background: '#f9f9f9'\n  on-background: '#1b1b1b'\n  surface-variant: '#e2e2e2'\ntypography:\n  display:\n    fontFamily: Inter\n    fontSize: 72px\n    fontWeight: '800'\n    lineHeight: '1.1'\n    letterSpacing: -0.04em\n  headline-lg:\n    fontFamily: Inter\n    fontSize: 40px\n    fontWeight: '700'\n    lineHeight: '1.2'\n    letterSpacing: -0.02em\n  headline-lg-mobile:\n    fontFamily: Inter\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: '1.2'\n    letterSpacing: -0.02em\n  headline-md:\n    fontFamily: Inter\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: '1.3'\n    letterSpacing: -0.01em\n  body-lg:\n    fontFamily: Inter\n    fontSize: 18px\n    fontWeight: '400'\n    lineHeight: '1.6'\n    letterSpacing: '0'\n  body-md:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: '1.6'\n    letterSpacing: '0'\n  label-sm:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: '1'\n    letterSpacing: 0.05em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  unit: 8px\n  container-max: 1200px\n  gutter: 24px\n  margin-desktop: 64px\n  margin-mobile: 24px\n  stack-lg: 48px\n  stack-md: 24px\n  stack-sm: 12px\n---\n\n## Brand & Style\nThe design system is built on a philosophy of \"Radical Clarity.\" It rejects traditional gaming aesthetics\u2014neon lights, aggressive slants, and cluttered HUDs\u2014in favor of a premium, editorial experience inspired by modern productivity tools and high-end hardware design.\n\nThe target audience is the \"sophisticated gamer\" who values performance data and content highlights but demands a calm, focused environment. The style is **Minimalist / Modern Corporate**, utilizing high-contrast monochromatic themes, significant negative space, and precision-engineered typography to elevate the content. It feels more like an art gallery for highlights than a typical social platform.\n\n## Colors\nThe palette is strictly monochromatic to ensure that the user\u2019s gameplay footage remains the singular source of color in the interface. \n\n- **Primary:** Pure Black (#000000) for all primary text, icons, and high-impact button states.\n- **Surface:** Pure White (#FFFFFF) for the global background and cards.\n- **Success:** A subtle Emerald Green (#22C55E) reserved exclusively for positive metrics, upload confirmations, or \"Live\" indicators.\n- **Borders:** A very light grey (#E5E5E5) provides structure without visual noise.\n\nAvoid gradients, shadows, or color tints. Depth is achieved through line and scale rather than hue.\n\n## Typography\nTypography is the primary decorative element. We use **Inter** for its neutral, architectural quality. \n\nLarge display titles should use tight letter-spacing and heavy weights to create a \"block\" feel. Body text remains airy and highly legible with generous line heights. Labels are always uppercase with increased tracking to denote metadata and small details. On mobile, we aggressively scale down display fonts to maintain the \"one-screen, one-thought\" philosophy.\n\n## Layout & Spacing\nThe layout follows a **Fixed Grid** model on desktop (12 columns) and a fluid 4-column model on mobile. \n\nWhitespace is treated as a functional component. Avoid filling empty spaces; instead, use large margins to isolate content and create focus. \n- **Alignment:** Strict left-alignment for all headers and body text.\n- **Rhythm:** All vertical spacing should be multiples of 8px. Use 64px margins for desktop sections to create a premium, \"breathable\" feel.\n- **Reflow:** On mobile, margins shrink to 24px, and all multi-column stacks collapse into a single vertical stream.\n\n## Elevation & Depth\nThis design system avoids shadows entirely to maintain a flat, modern aesthetic. \n\n- **Tonal Layers:** Depth is communicated through 1px solid borders (#E5E5E5). \n- **Z-Index:** For modals or pop-overs, use a solid white background with a slightly thicker 2px black border to indicate focus.\n- **Interaction:** Hover states do not use lifts or glows; they trigger color inversions (e.g., a white button background turns black) or subtle opacity shifts.\n\n## Shapes\nThe shape language balances technical precision with modern softness. \n\nAll containers, cards, and primary buttons use a **12px (0.75rem)** radius. Smaller components like tags or chips use a **4px** radius. This distinction helps separate major content blocks from minor interface controls. Icons should be strictly linear with a 2px stroke weight and rounded caps to match the UI radius.\n\n## Components\n\n- **Buttons:** Primary buttons are solid #000000 with #FFFFFF text. Secondary buttons are #FFFFFF with a 1px #E5E5E5 border. No gradients. High-contrast only.\n- **Cards:** Flat #FFFFFF background with a 1px #E5E5E5 border. Padding should be generous (min 24px).\n- **Input Fields:** Minimalist design with only a bottom border (2px) that turns black on focus. No background fills.\n- **Chips/Tags:** Small, uppercase text in #737373 with a 4px rounded corner. Used for game categories or timestamps.\n- **Lists:** Clean rows separated by 1px horizontal lines. No zebra-striping. High vertical padding (16px-24px per row).\n- **Video Thumbnails:** 12px rounded corners. No play icon overlays; use a subtle hover state that reveals a \"Watch\" label in the corner.\n- **Status Indicators:** A small 8px circle. Only use #22C55E for \"Ready\" or \"Success\" states; all other states are neutral grey.",
+        "colorVariant": "FIDELITY",
+        "overridePrimaryColor": "#000000",
+        "overrideSecondaryColor": "#ffffff",
+        "spacingScale": 2,
+        "typography": {
+          "body-lg": {
+            "fontFamily": "Inter",
+            "fontSize": "18px",
+            "fontWeight": "400",
+            "lineHeight": "1.6",
+            "letterSpacing": "0"
+          },
+          "body-md": {
+            "fontFamily": "Inter",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "lineHeight": "1.6",
+            "letterSpacing": "0"
+          },
+          "display": {
+            "fontFamily": "Inter",
+            "fontSize": "72px",
+            "fontWeight": "800",
+            "lineHeight": "1.1",
+            "letterSpacing": "-0.04em"
+          },
+          "headline-lg": {
+            "fontFamily": "Inter",
+            "fontSize": "40px",
+            "fontWeight": "700",
+            "lineHeight": "1.2",
+            "letterSpacing": "-0.02em"
+          },
+          "headline-lg-mobile": {
+            "fontFamily": "Inter",
+            "fontSize": "32px",
+            "fontWeight": "700",
+            "lineHeight": "1.2",
+            "letterSpacing": "-0.02em"
+          },
+          "headline-md": {
+            "fontFamily": "Inter",
+            "fontSize": "24px",
+            "fontWeight": "600",
+            "lineHeight": "1.3",
+            "letterSpacing": "-0.01em"
+          },
+          "label-sm": {
+            "fontFamily": "Inter",
+            "fontSize": "12px",
+            "fontWeight": "600",
+            "lineHeight": "1",
+            "letterSpacing": "0.05em"
+          }
+        },
+        "spacing": {
+          "container-max": "1200px",
+          "gutter": "24px",
+          "margin-desktop": "64px",
+          "margin-mobile": "24px",
+          "stack-lg": "48px",
+          "stack-md": "24px",
+          "stack-sm": "12px",
+          "unit": "8px"
+        },
+        "headlineFontFamily": "Inter",
+        "bodyFontFamily": "Inter",
+        "labelFontFamily": "Inter"
+      }
+    },
+    "version": "1"
+  }
+]

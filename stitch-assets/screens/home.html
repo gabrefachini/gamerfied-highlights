@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom subtle focus effect for the upload area */
+        .upload-area:hover {
+            border-color: #000000;
+            background-color: #f3f3f3;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#c6c6c6",
+                        "surface-tint": "#5e5e5e",
+                        "surface-container-high": "#e8e8e8",
+                        "on-surface-variant": "#4c4546",
+                        "background": "#f9f9f9",
+                        "tertiary-container": "#1b1b1b",
+                        "on-error-container": "#93000a",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#848484",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#cfc4c5",
+                        "surface-container": "#eeeeee",
+                        "outline": "#7e7576",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#474747",
+                        "on-primary-fixed": "#1b1b1b",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary": "#000000",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "surface-bright": "#f9f9f9",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1b1b",
+                        "inverse-primary": "#c6c6c6",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#848484",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "surface-container-low": "#f3f3f3",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#616363",
+                        "secondary-container": "#dfe0e0",
+                        "primary-container": "#1b1b1b",
+                        "primary-fixed": "#e2e2e2",
+                        "inverse-surface": "#303030",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "on-background": "#1b1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface fixed top-0 w-full z-50 border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="grid_view">grid_view</span>
+</div>
+<h1 class="text-headline-md font-headline-md font-extrabold tracking-tighter text-primary">GAMERFIED HIGHLIGHTS</h1>
+<div class="w-6"></div> <!-- Spacer for symmetry -->
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-start px-margin-mobile pt-32 pb-margin-mobile max-w-container-max mx-auto w-full md:px-margin-desktop">
+<!-- Hero Section -->
+<section class="w-full mb-stack-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-2">Create your CS highlight.</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-stack-lg">Upload a demo or paste a match link.</p>
+<!-- Upload Area -->
+<div class="upload-area w-full aspect-square md:aspect-video flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-lowest transition-all duration-300 cursor-pointer group mb-stack-md">
+<span class="material-symbols-outlined text-outline group-hover:text-primary mb-4 text-5xl transition-colors" data-icon="add">add</span>
+<p class="font-label-sm text-label-sm text-outline group-hover:text-primary uppercase tracking-widest">Select demo file</p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4 w-full">
+<button class="w-full bg-primary text-on-primary py-5 rounded-none font-label-sm text-label-sm uppercase tracking-widest hover:opacity-90 transition-all active:scale-[0.98]">
+                    Upload Demo
+                </button>
+<button class="w-full bg-surface-container-lowest text-primary border border-outline-variant py-5 rounded-none font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-variant transition-all active:scale-[0.98]">
+                    Paste Match Link
+                </button>
+</div>
+</section>
+<!-- Visual Anchor (Subtle imagery to fill space while maintaining minimalist vibe) -->
+<div class="w-full mt-auto opacity-40">
+<div class="h-[1px] w-full bg-outline-variant mb-stack-lg"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-stack-md">
+<div class="max-w-xs">
+<p class="font-label-sm text-label-sm text-outline uppercase mb-2">Process</p>
+<p class="font-body-md text-body-md text-secondary">Our engine parses your CS:GO/CS2 demo in seconds to find your most clinical shots and tactical plays.</p>
+</div>
+<img class="w-full md:w-64 aspect-video object-cover rounded-lg filter grayscale" data-alt="A highly minimalist and cinematic close-up of a high-end mechanical gaming keyboard in a dark room. The lighting is cold and clinical, highlighting only the sharp edges of the keycaps. The aesthetic is monochromatic, using only deep blacks and stark whites to create a professional, performance-oriented atmosphere. The shot is crisp, focusing on the texture of the matte plastic and the precision engineering of the device." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_JdJx_i0ff7kbMi9Qlr2fPe0gRqLqLWVN5FVRY6FV5h-8dARlxsIegFjihFMfG4Gqo6gNASZ46JmCI1WCzlVDOGOaLSC0uzz4s-R_CtThCYn2jRHnAZpfMtMVL5GknTdjmhqfEJn6iZJBsdsATbVpiBGRalQahYicnkOWWUrWRU74c7ceMq72DWJCJWfSRkRDI3Ol3Boe9b2HwKWfhZR5N0vXkraqxKgFWdVNcv52ygFwIdU9K24RodHDE3BfEtarOwQmJhsNyPk"/>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant px-margin-mobile pb-safe md:hidden">
+<a class="flex flex-col items-center justify-center text-primary font-bold border-t-2 border-primary pt-2 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline pt-2 hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="movie_filter">movie_filter</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">FEED</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline pt-2 hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="folder_special">folder_special</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">LIBRARY</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline pt-2 hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">PROFILE</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for upload area
+        const uploadArea = document.querySelector('.upload-area');
+        if(uploadArea) {
+            uploadArea.addEventListener('click', () => {
+                // Simple feedback click
+                uploadArea.classList.add('scale-95');
+                setTimeout(() => uploadArea.classList.remove('scale-95'), 100);
+                console.log('Upload area clicked');
+            });
+        }
+
+        // Active state navigation logic handled via static class mapping per prompt requirements
+    </script>
+</body></html>

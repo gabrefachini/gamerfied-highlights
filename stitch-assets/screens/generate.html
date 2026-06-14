@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GAMERFIED HIGHLIGHTS - Generate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "surface-container-high": "#e8e8e8",
+                    "on-surface-variant": "#4c4546",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#1b1b1b",
+                    "on-error-container": "#93000a",
+                    "secondary": "#5d5f5f",
+                    "surface-variant": "#e2e2e2",
+                    "tertiary": "#000000",
+                    "on-primary-container": "#848484",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#cfc4c5",
+                    "surface-container": "#eeeeee",
+                    "outline": "#7e7576",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-primary-fixed": "#1b1b1b",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary": "#000000",
+                    "surface": "#f9f9f9",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "surface-bright": "#f9f9f9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1b1b",
+                    "inverse-primary": "#c6c6c6",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#848484",
+                    "surface-dim": "#dadada",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "surface-container-low": "#f3f3f3",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#616363",
+                    "secondary-container": "#dfe0e0",
+                    "primary-container": "#1b1b1b",
+                    "primary-fixed": "#e2e2e2",
+                    "inverse-surface": "#303030",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-background": "#1b1b1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "24px",
+                    "stack-lg": "48px",
+                    "container-max": "1200px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "stack-md": "24px",
+                    "stack-sm": "12px"
+            },
+            "fontFamily": {
+                    "display": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for minimalist feel */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-on-surface cursor-pointer hover:opacity-70 transition-opacity duration-200">grid_view</span>
+<span class="text-headline-md font-headline-md font-extrabold tracking-tighter text-primary dark:text-on-surface">GAMERFIED HIGHLIGHTS</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-label-sm font-label-sm text-secondary dark:text-on-surface-variant hover:opacity-70 transition-opacity duration-200 uppercase" href="#">Home</a>
+<a class="text-label-sm font-label-sm text-secondary dark:text-on-surface-variant hover:opacity-70 transition-opacity duration-200 uppercase" href="#">Feed</a>
+<a class="text-label-sm font-label-sm text-secondary dark:text-on-surface-variant hover:opacity-70 transition-opacity duration-200 uppercase" href="#">Library</a>
+<a class="text-label-sm font-label-sm text-primary dark:text-on-surface font-bold hover:opacity-70 transition-opacity duration-200 uppercase" href="#">Generate</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">person</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="min-h-screen pt-32 pb-48 flex flex-col items-start px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Massive Whitespace / Top Section -->
+<section class="w-full mb-stack-lg animate-fade-in">
+<div class="flex flex-col gap-unit">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-widest">Workflow Step 03</span>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary max-w-2xl">
+                    Generate your video.
+                </h1>
+</div>
+</section>
+<!-- Central Focus Component: Bento-inspired Hero Card -->
+<div class="w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Highlight Summary -->
+<div class="md:col-span-7 flex flex-col gap-stack-md">
+<div class="relative group aspect-video bg-surface-container overflow-hidden rounded-xl border border-outline-variant">
+<img alt="A crisp, high-definition screenshot of a competitive first-person shooter match showing the final seconds of a round. The scene is clean, minimal, and focuses on the tactical interface against a bright, modern indoor map setting. The lighting is neutral and sophisticated, avoiding typical gaming neon for a professional broadcast aesthetic." class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" data-alt="A clean, high-definition capture of a competitive gaming environment. The scene depicts a tactical shooter map with minimalist architectural details and bright, naturalistic indoor lighting. The visual style is editorial and premium, emphasizing sharp lines and monochromatic surfaces with deep black shadows. The mood is focused and technologically advanced, suitable for a professional esports broadcast highlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv22hIXVtGLkqip9h6Q4rvq5vG8xL_olzzFZDift0Xb_g1jwf2Z28H6USPZmF7-aYKNrpoDJEUCBE4oFqR-jxwMkc23Aj1ht9lc-brd35mfnAYaz-zcqz86Z4EO_dOPphzrrKihJ7L2td_oUwNMw0cyDpHoKu3KLzfPj3A-RipoLsPAkit4GlEj4iOtMFVlT0ey7y7xdp_HU5bCXONgfCo44n2tpHcC1W6BMQDRbLGrx3UPJUBVtWjnBmGFaMbacrSG78F5oGiqmo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 flex flex-col gap-2">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter w-fit">Selected</span>
+<h2 class="text-headline-md font-headline-md text-white drop-shadow-sm">ACE Round 14</h2>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter py-stack-sm">
+<div class="border-l border-outline-variant pl-4">
+<p class="text-label-sm font-label-sm text-outline uppercase mb-1">Duration</p>
+<p class="text-body-lg font-body-lg">0:45</p>
+</div>
+<div class="border-l border-outline-variant pl-4">
+<p class="text-label-sm font-label-sm text-outline uppercase mb-1">Resolution</p>
+<p class="text-body-lg font-body-lg">4K / 60fps</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Action / Settings -->
+<div class="md:col-span-5 flex flex-col gap-stack-lg md:pt-4">
+<div class="flex flex-col gap-stack-sm">
+<p class="text-body-md font-body-md text-on-surface-variant max-w-sm">
+                        Confirm your parameters. Your highlight will be processed with our ultra-clean cinematic preset, removing HUD clutter and enhancing motion clarity.
+                    </p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between py-4 border-b border-outline-variant">
+<span class="text-body-md font-body-md font-semibold">Cinematic Color Grade</span>
+<div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-outline-variant">
+<span class="text-body-md font-body-md font-semibold">Motion Blur (RSMB)</span>
+<div class="w-10 h-5 bg-surface-variant rounded-full relative cursor-pointer">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Primary CTA -->
+<div class="mt-4">
+<button class="w-full bg-primary text-on-primary py-6 px-10 text-label-sm font-label-sm uppercase tracking-[0.2em] hover:bg-tertiary transition-colors duration-300 group flex items-center justify-center gap-4">
+                        Generate Video
+                        <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</button>
+<p class="text-center mt-6 text-label-sm font-label-sm text-outline uppercase">Estimated time: 120s</p>
+</div>
+</div>
+</div>
+<!-- Secondary Information / Footer-like stats -->
+<section class="mt-48 w-full grid grid-cols-1 md:grid-cols-3 gap-stack-lg border-t border-outline-variant pt-12">
+<div>
+<p class="text-label-sm font-label-sm text-outline uppercase mb-4">Storage</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Cloud space remaining: 4.2 GB. Auto-upload is enabled for all library items.</p>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline uppercase mb-4">Export Preset</p>
+<p class="text-body-md font-body-md text-on-surface-variant">High Performance. Optimal for YouTube and mobile vertical sharing formats.</p>
+</div>
+<div class="flex flex-col items-start gap-4">
+<p class="text-label-sm font-label-sm text-outline uppercase">Recent</p>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-white overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="Gaming setup profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNlz6X_idFHH_fzufx7tFtgMSvSBTKUh5XmWuNpjmUianQ0wKY-qNV2CQ5Ebqb3f5XHHhXtBQRu9HFT5xT3PnueHKjbRHZLUJuiiwRnYviiPy7q_PZhcOOWtAPSMdb6xt6L5illI395wABU4Qh4zgpUtFvQ6Vx1bk-jV6wMGnbVqB6PIQV2hOwLJEs-BTXzbyIQevvtf2DjUzPPvBjIbHswjXBsTC7ug6k_4Ydet_WQ-0FidLskdjYPwglT8QkrG3BY4WsAuGLJpo"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container border border-white overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="Minimalist office avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Lx-Qa3tcDpTIGka05Du44wkSrFfX11Rp7D_TTCpzfJWW7ztizc_pdOduN2MZDQVdKFg6dVyi3Qfy3Dg1W1tvJymepecVM-7fXZNlNFUhP6fNXW9xhOzyYcgKBIlqryAcsx5JZAB6v9Wdp1dLjcuF_8JpPbKTB58Y96PpihWfTTM1yWnEsDkO6SrP50Ge1PZcasMvTnwQ6twNh2-xpMbfy_or2KAiQnyTDelK8lFnYB8gI_g-D6njksgzgqYFU8fGGyX2VqV7T0k"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-[10px] text-white border border-white">+3</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface dark:bg-surface px-margin-mobile pb-safe border-t border-outline-variant h-20">
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant pt-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant pt-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">movie_filter</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">FEED</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant pt-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">folder_special</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">LIBRARY</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-on-surface font-bold border-t-2 border-primary dark:border-on-surface pt-2 scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="text-label-sm font-label-sm uppercase mt-1">GENERATE</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for the primary button
+        const generateBtn = document.querySelector('button');
+        if (generateBtn) {
+            generateBtn.addEventListener('mousedown', () => {
+                generateBtn.style.transform = 'scale(0.98)';
+            });
+            generateBtn.addEventListener('mouseup', () => {
+                generateBtn.style.transform = 'scale(1)';
+            });
+            generateBtn.addEventListener('mouseleave', () => {
+                generateBtn.style.transform = 'scale(1)';
+            });
+        }
+
+        // Simple toggle simulation
+        const toggles = document.querySelectorAll('.w-10.h-5');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const knob = toggle.querySelector('div');
+                const isOff = toggle.classList.contains('bg-surface-variant');
+                
+                if (isOff) {
+                    toggle.classList.remove('bg-surface-variant');
+                    toggle.classList.add('bg-primary');
+                    knob.classList.remove('left-1');
+                    knob.classList.add('right-1');
+                } else {
+                    toggle.classList.remove('bg-primary');
+                    toggle.classList.add('bg-surface-variant');
+                    knob.classList.remove('right-1');
+                    knob.classList.add('left-1');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum HighlightInputType {
+  DEMO_UPLOAD
+  MATCH_LINK
+}
+
+enum HighlightJobStatus {
+  CREATED
+  UPLOADED
+  ANALYZING
+  READY_TO_PICK
+  RENDER_QUEUED
+  RENDERING
+  DONE
+  FAILED
+}
+
+enum RenderJobStatus {
+  QUEUED
+  RENDERING
+  DONE
+  FAILED
+}
+
+model HighlightJob {
+  id           String               @id @default(uuid())
+  userId       String?
+  inputType    HighlightInputType
+  inputUrl     String?
+  demoFilePath String?
+  status       HighlightJobStatus   @default(CREATED)
+  diagnostics  Json?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  candidates   HighlightCandidate[]
+  renderJobs   RenderJob[]
+
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+}
+
+model HighlightCandidate {
+  id               String       @id @default(uuid())
+  jobId            String
+  type             String
+  playerName       String?
+  playerSteamId    String?
+  roundNumber      Int?
+  startTick        Int
+  endTick          Int
+  startTimeSeconds Float?
+  endTimeSeconds   Float?
+  kills            Int          @default(0)
+  headshots        Int          @default(0)
+  score            Float        @default(0)
+  confidence       Float        @default(0)
+  metadata         Json?
+  job              HighlightJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  renderJobs       RenderJob[]
+
+  @@index([jobId, score])
+  @@index([type])
+}
+
+model RenderJob {
+  id           String          @id @default(uuid())
+  jobId        String
+  candidateId  String
+  status       RenderJobStatus @default(QUEUED)
+  videoUrl     String?
+  errorMessage String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  job          HighlightJob    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidate    HighlightCandidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  @@index([jobId, createdAt])
+  @@index([candidateId])
+  @@index([status, createdAt])
+}
