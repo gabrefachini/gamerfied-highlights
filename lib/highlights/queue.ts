@@ -1,6 +1,6 @@
 import { Queue } from "bullmq";
-import IORedis from "ioredis";
 import { env } from "@/lib/env";
+import { getRedisConnectionOptions } from "./redisConnection";
 
 export const analysisQueueName = "gamerfied-highlights-analysis";
 
@@ -10,12 +10,8 @@ export function getAnalysisQueue() {
   if (!env.redisUrl) return null;
   if (queue) return queue;
 
-  const connection = new IORedis(env.redisUrl, {
-    maxRetriesPerRequest: null
-  });
-
   queue = new Queue(analysisQueueName, {
-    connection,
+    connection: getRedisConnectionOptions(),
     defaultJobOptions: {
       attempts: 2,
       backoff: { type: "exponential", delay: 10_000 },
