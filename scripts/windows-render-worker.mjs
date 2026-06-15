@@ -8,6 +8,8 @@ const pollIntervalMs = Number(process.env.RENDER_WORKER_POLL_MS || 5000);
 const workerId = process.env.RENDER_WORKER_ID || "windows-render-worker-1";
 const localWorkDir = process.env.RENDER_WORKER_DIR || "C:\\gamerfied-highlights-worker";
 const demoRendererCommand = process.env.DEMO_RENDERER_COMMAND || "";
+const demoRendererExecutable = process.env.DEMO_RENDERER_EXECUTABLE || "";
+const demoRendererArgs = process.env.DEMO_RENDERER_ARGS || "";
 const outputFileName = process.env.RENDER_WORKER_OUTPUT_FILE || "highlight.mp4";
 const workerLogPath = path.join(localWorkDir, "worker.log");
 
@@ -147,10 +149,16 @@ async function runRendererCommand(job, preparedFiles) {
   };
 
   return await new Promise((resolve, reject) => {
-    const child = spawn(demoRendererCommand, {
+    const useExplicitExecutable = Boolean(demoRendererExecutable);
+    const command = useExplicitExecutable ? demoRendererExecutable : process.env.ComSpec || "cmd.exe";
+    const args = useExplicitExecutable
+      ? splitCommandLine(demoRendererArgs)
+      : ["/d", "/s", "/c", demoRendererCommand];
+
+    const child = spawn(command, args, {
       cwd: jobDir,
       env: rendererEnv,
-      shell: true,
+      windowsHide: false,
       stdio: ["ignore", "pipe", "pipe"]
     });
 
@@ -170,7 +178,11 @@ async function runRendererCommand(job, preparedFiles) {
     });
 
     child.on("error", (error) => {
-      reject(error);
+      reject(
+        new Error(
+          `Unable to start renderer process "${command}" with args ${JSON.stringify(args)}: ${error.code || ""} ${error.message}`.trim()
+        )
+      );
     });
 
     child.on("exit", (code) => {
@@ -186,6 +198,42 @@ async function runRendererCommand(job, preparedFiles) {
       );
     });
   });
+}
+
+function splitCommandLine(commandLine) {
+  const args = [];
+  let current = "";
+  let quote = "";
+
+  for (let index = 0; index < commandLine.length; index += 1) {
+    const char = commandLine[index];
+
+    if ((char === '"' || char === "'") && !quote) {
+      quote = char;
+      continue;
+    }
+
+    if (char === quote) {
+      quote = "";
+      continue;
+    }
+
+    if (/\s/.test(char) && !quote) {
+      if (current) {
+        args.push(current);
+        current = "";
+      }
+      continue;
+    }
+
+    current += char;
+  }
+
+  if (current) {
+    args.push(current);
+  }
+
+  return args;
 }
 
 async function assertOutputVideoExists(outputVideoPath) {
