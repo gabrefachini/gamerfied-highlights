@@ -16,9 +16,9 @@ type RenderJob = {
     | "COMPLETED"
     | "FAILED";
   outputVideoPath: string | null;
-  startTimeSeconds: number;
-  endTimeSeconds: number;
-  durationSeconds: number;
+  startTimeSeconds: number | null;
+  endTimeSeconds: number | null;
+  durationSeconds: number | null;
   errorMessage: string | null;
   candidate: {
     type: string;
@@ -42,6 +42,10 @@ type RenderJob = {
     errorMessage: string | null;
   };
 };
+
+function formatSeconds(value: number | null) {
+  return value == null ? "-" : `${value.toFixed(2)}s`;
+}
 
 const STATUS_COPY: Record<RenderJob["status"], { eyebrow: string; title: string; badge: string }> = {
   QUEUED: { eyebrow: "Render Queued", title: "Render queued.", badge: "QUEUED" },
@@ -110,7 +114,7 @@ export function RenderStatusPanel({ renderId, initialRenderJob }: { renderId: st
             <span className="detail-chip">{renderJob.candidate.type}</span>
             <span className="detail-chip">{renderJob.candidate.kills} kills</span>
             <span className="detail-chip">Round {renderJob.candidate.roundNumber || "-"}</span>
-            <span className="detail-chip">{renderJob.durationSeconds.toFixed(2)}s</span>
+            <span className="detail-chip">{formatSeconds(renderJob.durationSeconds)}</span>
           </div>
         </div>
         <aside className="panel">
@@ -130,8 +134,8 @@ export function RenderStatusPanel({ renderId, initialRenderJob }: { renderId: st
                   : "Render queued. The demo renderer will process the selected highlight."}
           </p>
           <div className="details">
-            <span className="detail-chip">Start {renderJob.startTimeSeconds.toFixed(2)}s</span>
-            <span className="detail-chip">End {renderJob.endTimeSeconds.toFixed(2)}s</span>
+            <span className="detail-chip">Start {formatSeconds(renderJob.startTimeSeconds)}</span>
+            <span className="detail-chip">End {formatSeconds(renderJob.endTimeSeconds)}</span>
             {renderJob.outputVideoPath ? <span className="detail-chip">{renderJob.outputVideoPath}</span> : null}
           </div>
           {renderJob.status === "COMPLETED" ? (

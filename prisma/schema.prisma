@@ -83,9 +83,9 @@ model RenderJob {
   sourceVideoPath String?
   outputVideoPath String?
   status       RenderJobStatus @default(QUEUED)
-  startTimeSeconds Float
-  endTimeSeconds Float
-  durationSeconds Float
+  startTimeSeconds Float?
+  endTimeSeconds Float?
+  durationSeconds Float?
   errorMessage String?
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
