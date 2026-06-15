@@ -25,8 +25,14 @@ enum HighlightJobStatus {
 
 enum RenderJobStatus {
   QUEUED
+  WAITING_FOR_RENDERER
+  LAUNCHING_GAME
+  LOADING_DEMO
+  SEEKING_TICK
+  CAPTURING
+  POST_PROCESSING
   RENDERING
-  DONE
+  COMPLETED
   FAILED
 }
 
@@ -74,8 +80,12 @@ model RenderJob {
   id           String          @id @default(uuid())
   jobId        String
   candidateId  String
+  sourceVideoPath String?
+  outputVideoPath String?
   status       RenderJobStatus @default(QUEUED)
-  videoUrl     String?
+  startTimeSeconds Float
+  endTimeSeconds Float
+  durationSeconds Float
   errorMessage String?
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt

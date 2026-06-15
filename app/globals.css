@@ -653,6 +653,13 @@ label:focus-within {
   padding-top: 24px;
 }
 
+.render-preview {
+  border: 1px solid color-mix(in srgb, var(--outline) 75%, var(--skin-border-accent));
+  border-radius: 12px;
+  margin-top: 24px;
+  width: 100%;
+}
+
 .detail-chip {
   background: var(--surface-container);
   border: 1px solid color-mix(in srgb, var(--outline) 85%, var(--skin-border-accent));

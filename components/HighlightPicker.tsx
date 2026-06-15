@@ -23,6 +23,12 @@ type HighlightJob = {
   candidates: Candidate[];
 };
 
+type RendererAvailability = {
+  configured: boolean;
+  message: string;
+  ctaLabel: string;
+};
+
 const formatTime = (seconds: number | null) => {
   if (!seconds) return "00:00";
   const rounded = Math.max(0, Math.round(seconds));
@@ -32,8 +38,10 @@ const formatTime = (seconds: number | null) => {
 export function HighlightPicker({ jobId }: { jobId: string }) {
   const router = useRouter();
   const [job, setJob] = useState<HighlightJob | null>(null);
+  const [renderer, setRenderer] = useState<RendererAvailability | null>(null);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState("");
+  const [isQueueingRender, setIsQueueingRender] = useState(false);
   const isTerminal = useMemo(() => ["READY_TO_PICK", "FAILED", "RENDER_QUEUED", "DONE"].includes(job?.status || ""), [job]);
 
   useEffect(() => {
@@ -46,6 +54,7 @@ export function HighlightPicker({ jobId }: { jobId: string }) {
         if (!response.ok) throw new Error(payload.error || "Unable to load job");
         if (!cancelled) {
           setJob(payload.job);
+          setRenderer(payload.renderer);
           setSelectedId(payload.job.candidates?.[0]?.id || "");
         }
       } catch (loadError) {
@@ -67,17 +76,22 @@ export function HighlightPicker({ jobId }: { jobId: string }) {
 
   async function queueRender() {
     if (!selectedId) return;
-    const response = await fetch("/api/render-jobs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ jobId, candidateId: selectedId })
-    });
-    const payload = await response.json();
-    if (!response.ok) {
-      setError(payload.error || "Unable to queue render");
-      return;
+    setIsQueueingRender(true);
+    try {
+      const response = await fetch("/api/render-jobs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jobId, candidateId: selectedId })
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        setError(payload.error || "Unable to queue render");
+        return;
+      }
+      router.push(`/result/${payload.renderJob.id}`);
+    } finally {
+      setIsQueueingRender(false);
     }
-    router.push(`/result/${payload.renderJob.id}`);
   }
 
   if (error) return <p className="error">{error}</p>;
@@ -115,6 +129,11 @@ export function HighlightPicker({ jobId }: { jobId: string }) {
 
       {job.candidates.length ? (
         <>
+          <div className="panel upload-panel">
+            <p className="eyebrow">Generate From Demo</p>
+            <p className="muted">The selected highlight will be rendered from the demo once a CS2/HLAE renderer is configured.</p>
+            <p className="muted">{renderer?.message || "Renderer not configured yet."}</p>
+          </div>
           <div className="candidate-grid">
             {job.candidates.map((candidate) => (
               <label className={`candidate ${selectedId === candidate.id ? "active" : ""}`} key={candidate.id}>
@@ -155,8 +174,8 @@ export function HighlightPicker({ jobId }: { jobId: string }) {
               </label>
             ))}
           </div>
-          <button className="button" onClick={queueRender} type="button">
-            Generate video
+          <button className="button" disabled={isQueueingRender || !renderer?.configured} onClick={queueRender} type="button">
+            {isQueueingRender ? "Queueing render..." : renderer?.configured ? "Generate from demo" : renderer?.ctaLabel || "Renderer setup required"}
           </button>
         </>
       ) : (

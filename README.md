@@ -4,12 +4,12 @@ Standalone lightweight app for CS2 highlight generation.
 
 Core flow:
 
-1. Upload a `.dem` file or paste a match link.
+1. Upload a `.dem` file.
 2. Analyze demo events.
 3. Show highlight candidates.
 4. Select one candidate.
-5. Queue a future video render.
-6. Download/share later.
+5. Create a render job for the selected candidate.
+6. Render the selected moment from the demo once a CS2/HLAE renderer is configured.
 
 This project is independent from the main Gamerfied repository. It does not use the main Gamerfied database, auth, feed, sessions, messages, social graph, coach, or navigation.
 
@@ -68,20 +68,26 @@ APP_URL="http://localhost:3000"
 Included:
 
 - Anonymous upload with optional email placeholder
-- Match link storage placeholder
 - Job status page
 - Parser/detector integration for uploaded `.dem` files
 - Candidate scoring
-- Render-job placeholder
+- Demo-based render-job architecture for future CS2/HLAE rendering
+- Windows render-worker contract and internal worker APIs
 
 Not included yet:
 
 - Main Gamerfied auth
 - Payments
-- Real video rendering
+- Real CS2 `.dem` replay rendering engine
 - S3 upload implementation
-- Match-link demo ingestion
 - Public share pages with access controls
+
+## Demo Rendering
+
+This MVP does not require a full match recording upload. `.dem` remains the primary input and the render pipeline is now oriented around a dedicated CS2/HLAE renderer.
+
+See [docs/cs2-demo-rendering.md](/Users/gabrielfachini/Project/Gamerfied/gamerfied-highlights/docs/cs2-demo-rendering.md).
+For the next-step remote worker setup, see [docs/windows-render-worker.md](/Users/gabrielfachini/Project/Gamerfied/gamerfied-highlights/docs/windows-render-worker.md).
 
 ## Data Model
 

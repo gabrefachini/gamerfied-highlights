@@ -40,14 +40,10 @@ export function UploadForm() {
       <div className="field">
         <label className="upload-zone" htmlFor="demo">
           <span className="upload-icon">+</span>
-          <span className="upload-label">Select demo file</span>
+          <span className="upload-label">Upload Demo</span>
           <span className="muted">Drop in a `.dem` export from CS2.</span>
         </label>
-        <input className="file-input" id="demo" name="demo" type="file" accept=".dem" />
-      </div>
-      <div className="field">
-        <label htmlFor="matchLink">Match link</label>
-        <input className="input" id="matchLink" name="matchLink" type="url" placeholder="https://..." />
+        <input className="file-input" id="demo" name="demo" type="file" accept=".dem" required />
       </div>
       <div className="field">
         <label htmlFor="email">Email placeholder</label>
@@ -55,14 +51,11 @@ export function UploadForm() {
       </div>
       <div className="button-row">
         <button className="button" disabled={isSubmitting} type="submit">
-          {isSubmitting ? "Analyzing" : "Upload demo"}
-        </button>
-        <button className="button secondary" disabled={isSubmitting} type="submit">
-          Paste match link
+          {isSubmitting ? "Analyzing..." : "Upload Demo"}
         </button>
       </div>
       {error ? <p className="error">{error}</p> : null}
-      <p className="muted">Match links are stored and marked as pending until link import is implemented.</p>
+      <p className="muted">Steam, FACEIT and GamersClub imports coming soon.</p>
     </form>
   );
 }

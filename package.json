@@ -7,6 +7,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
+    "render:test": "node scripts/render-test.mjs",
+    "worker:render-windows": "node scripts/windows-render-worker.mjs",
     "worker:analyze": "tsx scripts/analyze-worker.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",

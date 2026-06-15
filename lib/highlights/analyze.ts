@@ -14,14 +14,13 @@ export async function analyzeHighlightJob(jobId: string) {
   });
 
   if (!job.demoFilePath) {
-    console.warn("[upload-debug] analysis FAILURE", { jobId, error: "Match link ingestion is not implemented yet" });
+    console.warn("[upload-debug] analysis FAILURE", { jobId, error: "Demo file is required for analysis" });
     await prisma.highlightJob.update({
       where: { id: jobId },
       data: {
         status: "FAILED",
         diagnostics: {
-          error: "Match link ingestion is not implemented yet",
-          inputUrl: job.inputUrl
+          error: "Demo file is required for analysis"
         }
       }
     });

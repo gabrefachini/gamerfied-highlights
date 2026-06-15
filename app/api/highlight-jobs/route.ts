@@ -14,22 +14,20 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const demo = formData.get("demo");
-    const matchLink = String(formData.get("matchLink") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const requestPayload = {
       traceId,
       hasDemo: demo instanceof File,
       demoName: demo instanceof File ? demo.name : null,
       demoSize: demo instanceof File ? demo.size : null,
-      hasMatchLink: Boolean(matchLink),
       hasEmail: Boolean(email)
     };
 
     console.info("[upload-debug] request SUCCESS", requestPayload);
 
-    if (!(demo instanceof File) && !matchLink) {
-      console.warn("[upload-debug] validation FAILURE", { traceId, error: "Missing demo file or match link" });
-      return NextResponse.json({ error: "Upload a .dem file or paste a match link" }, { status: 400 });
+    if (!(demo instanceof File) || demo.size <= 0) {
+      console.warn("[upload-debug] validation FAILURE", { traceId, error: "Missing demo file" });
+      return NextResponse.json({ error: "Upload a .dem file to continue" }, { status: 400 });
     }
 
     if (!env.databaseUrl) {
@@ -37,11 +35,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "DATABASE_URL is not configured" }, { status: 500 });
     }
 
-    demoFilePath = demo instanceof File && demo.size > 0 ? await saveDemoUpload(demo) : null;
+    demoFilePath = await saveDemoUpload(demo);
     console.info("[upload-debug] file-storage SUCCESS", {
       traceId,
       filePath: demoFilePath,
-      fileSize: demo instanceof File ? demo.size : null
+      fileSize: demo.size
     });
 
     console.info("[upload-debug] highlight-job-create START", {
@@ -51,13 +49,13 @@ export async function POST(request: NextRequest) {
     const job = await prisma.highlightJob.create({
       data: {
         userId: email || null,
-        inputType: demoFilePath ? "DEMO_UPLOAD" : "MATCH_LINK",
-        inputUrl: demoFilePath ? null : matchLink,
+        inputType: "DEMO_UPLOAD",
+        inputUrl: null,
         demoFilePath,
-        status: demoFilePath ? "UPLOADED" : "CREATED",
+        status: "UPLOADED",
         diagnostics: {
-          source: demoFilePath ? "upload" : "match-link",
-          originalFileName: demo instanceof File ? demo.name : null
+          source: "upload",
+          originalFileName: demo.name
         }
       }
     });

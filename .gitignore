@@ -5,6 +5,10 @@ dist
 .env.local
 uploads/*
 !uploads/.gitkeep
+renders/*
+!renders/.gitkeep
+source-videos/*
+!source-videos/.gitkeep
 *.log
 coverage
 prisma/dev.db
