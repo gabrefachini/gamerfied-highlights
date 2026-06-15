@@ -10,6 +10,7 @@ const localWorkDir = process.env.RENDER_WORKER_DIR || "C:\\gamerfied-highlights-
 const demoRendererCommand = process.env.DEMO_RENDERER_COMMAND || "";
 const demoRendererExecutable = process.env.DEMO_RENDERER_EXECUTABLE || "";
 const demoRendererArgs = process.env.DEMO_RENDERER_ARGS || "";
+const hasRendererCommand = Boolean(demoRendererCommand || demoRendererExecutable);
 const outputFileName = process.env.RENDER_WORKER_OUTPUT_FILE || "highlight.mp4";
 const workerLogPath = path.join(localWorkDir, "worker.log");
 
@@ -279,12 +280,12 @@ async function processJob(job) {
     const preparedFiles = await prepareJobFiles(job, demoBuffer);
     await logJob(job.id, `prepared job files in ${preparedFiles.jobDir}`);
 
-    if (!demoRendererCommand) {
+    if (!hasRendererCommand) {
       await updateStatus(job.id, "WAITING_FOR_RENDERER", {
         errorMessage:
-          "Windows worker is connected, but DEMO_RENDERER_COMMAND is not configured yet. Install CS2/HLAE and configure the renderer command."
+          "Windows worker is connected, but no renderer command is configured yet. Set DEMO_RENDERER_COMMAND or DEMO_RENDERER_EXECUTABLE/DEMO_RENDERER_ARGS."
       });
-      await logJob(job.id, "status -> WAITING_FOR_RENDERER (missing DEMO_RENDERER_COMMAND)");
+      await logJob(job.id, "status -> WAITING_FOR_RENDERER (missing renderer command)");
       return;
     }
 
