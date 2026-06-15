@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { RenderJobStatus } from "@prisma/client";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
 import { assertRenderWorkerAuthorized } from "@/lib/rendering/workerAuth";
+
+const CLAIMABLE_RENDER_STATUSES: RenderJobStatus[] = [
+  RenderJobStatus.QUEUED,
+  RenderJobStatus.WAITING_FOR_RENDERER
+];
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,7 +18,9 @@ export async function POST(request: NextRequest) {
 
     const pendingJob = await prisma.renderJob.findFirst({
       where: {
-        status: "QUEUED"
+        status: {
+          in: CLAIMABLE_RENDER_STATUSES
+        }
       },
       orderBy: {
         createdAt: "asc"
@@ -30,7 +38,9 @@ export async function POST(request: NextRequest) {
     const claimResult = await prisma.renderJob.updateMany({
       where: {
         id: pendingJob.id,
-        status: "QUEUED"
+        status: {
+          in: CLAIMABLE_RENDER_STATUSES
+        }
       },
       data: {
         status: "LAUNCHING_GAME",
@@ -64,6 +74,7 @@ export async function POST(request: NextRequest) {
         startTimeSeconds: renderJob.startTimeSeconds,
         endTimeSeconds: renderJob.endTimeSeconds,
         durationSeconds: renderJob.durationSeconds,
+        claimedFromStatus: pendingJob.status,
         demo: {
           fileName: renderJob.job.demoFilePath ? renderJob.job.demoFilePath.split("/").pop() : null,
           downloadUrl: `${env.appUrl}/api/render-worker/jobs/${renderJob.id}/demo`
