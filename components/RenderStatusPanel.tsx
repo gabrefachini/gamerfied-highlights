@@ -13,6 +13,7 @@ type RenderJob = {
     | "CAPTURING"
     | "POST_PROCESSING"
     | "RENDERING"
+    | "DONE"
     | "COMPLETED"
     | "FAILED";
   outputVideoPath: string | null;
@@ -36,6 +37,7 @@ type RenderJob = {
       | "CAPTURING"
       | "POST_PROCESSING"
       | "RENDERING"
+      | "DONE"
       | "COMPLETED"
       | "FAILED";
     outputVideoPath: string | null;
@@ -56,6 +58,7 @@ const STATUS_COPY: Record<RenderJob["status"], { eyebrow: string; title: string;
   CAPTURING: { eyebrow: "Capturing", title: "Capturing highlight.", badge: "CAPTURING" },
   POST_PROCESSING: { eyebrow: "Post Processing", title: "Post-processing capture.", badge: "POST_PROCESSING" },
   RENDERING: { eyebrow: "Rendering", title: "Rendering highlight.", badge: "RENDERING" },
+  DONE: { eyebrow: "Completed", title: "Highlight ready.", badge: "DONE" },
   COMPLETED: { eyebrow: "Completed", title: "Highlight ready.", badge: "COMPLETED" },
   FAILED: { eyebrow: "Failed", title: "Render failed.", badge: "FAILED" }
 };
@@ -63,7 +66,7 @@ const STATUS_COPY: Record<RenderJob["status"], { eyebrow: string; title: string;
 export function RenderStatusPanel({ renderId, initialRenderJob }: { renderId: string; initialRenderJob: RenderJob | null }) {
   const [renderJob, setRenderJob] = useState<RenderJob | null>(initialRenderJob);
   const [error, setError] = useState("");
-  const isTerminal = useMemo(() => ["COMPLETED", "FAILED"].includes(renderJob?.status || ""), [renderJob?.status]);
+  const isTerminal = useMemo(() => ["DONE", "COMPLETED", "FAILED"].includes(renderJob?.status || ""), [renderJob?.status]);
 
   useEffect(() => {
     let cancelled = false;
@@ -121,7 +124,7 @@ export function RenderStatusPanel({ renderId, initialRenderJob }: { renderId: st
           <p className="eyebrow">Selected Moment</p>
           <h2>{renderJob.candidate.playerName || "Unknown player"}</h2>
           <p className="muted">
-            {renderJob.status === "COMPLETED"
+            {["DONE", "COMPLETED"].includes(renderJob.status)
               ? "The MP4 clip is ready for preview and download."
               : renderJob.status === "WAITING_FOR_RENDERER"
                 ? "Renderer not configured yet."
@@ -138,12 +141,12 @@ export function RenderStatusPanel({ renderId, initialRenderJob }: { renderId: st
             <span className="detail-chip">End {formatSeconds(renderJob.endTimeSeconds)}</span>
             {renderJob.outputVideoPath ? <span className="detail-chip">{renderJob.outputVideoPath}</span> : null}
           </div>
-          {renderJob.status === "COMPLETED" ? (
+          {["DONE", "COMPLETED"].includes(renderJob.status) ? (
             <video className="render-preview" controls preload="metadata" src={`/api/render-jobs/${renderId}/video`} />
           ) : null}
           {renderJob.errorMessage ? <p className="error">{renderJob.errorMessage}</p> : null}
           <div className="result-actions">
-            {renderJob.status === "COMPLETED" ? (
+            {["DONE", "COMPLETED"].includes(renderJob.status) ? (
               <a className="button" download href={`/api/render-jobs/${renderId}/video`}>
                 Download MP4
               </a>

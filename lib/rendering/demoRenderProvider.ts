@@ -146,7 +146,7 @@ export class CS2DemoRenderProvider implements VideoRenderProvider {
     });
 
     return {
-      status: renderJob.status,
+      status: renderJob.status === "DONE" ? "COMPLETED" : renderJob.status,
       outputVideoPath: renderJob.outputVideoPath,
       errorMessage: renderJob.errorMessage
     };

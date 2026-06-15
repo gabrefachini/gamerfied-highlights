@@ -10,7 +10,7 @@ export async function GET(_request: NextRequest, { params }: { params: { renderI
     where: { id: params.renderId }
   });
 
-  if (!renderJob || renderJob.status !== "COMPLETED" || !renderJob.outputVideoPath) {
+  if (!renderJob || !["DONE", "COMPLETED"].includes(renderJob.status) || !renderJob.outputVideoPath) {
     return NextResponse.json({ error: "Rendered video not found" }, { status: 404 });
   }
 
