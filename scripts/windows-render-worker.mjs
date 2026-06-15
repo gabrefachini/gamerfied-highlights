@@ -42,7 +42,7 @@ async function claimJob() {
     method: "POST",
     body: JSON.stringify({ workerId })
   });
-  const payload = await response.json();
+  const payload = await readJsonResponse(response, "claim render job");
   if (!response.ok) {
     throw new Error(payload.error || "Unable to claim render job");
   }
@@ -57,7 +57,7 @@ async function updateStatus(renderId, status, extras = {}) {
       ...extras
     })
   });
-  const payload = await response.json();
+  const payload = await readJsonResponse(response, `update render job ${renderId} to ${status}`);
   if (!response.ok) {
     throw new Error(payload.error || "Unable to update render status");
   }
@@ -68,11 +68,25 @@ async function downloadDemo(renderId) {
     method: "GET"
   });
   if (!response.ok) {
-    const payload = await response.json();
+    const payload = await readJsonResponse(response, `download demo for render job ${renderId}`);
     throw new Error(payload.error || "Unable to download demo");
   }
   const arrayBuffer = await response.arrayBuffer();
   return Buffer.from(arrayBuffer);
+}
+
+async function readJsonResponse(response, action) {
+  const text = await response.text();
+
+  try {
+    return text ? JSON.parse(text) : {};
+  } catch {
+    const contentType = response.headers.get("content-type") || "unknown content-type";
+    const snippet = text.replace(/\s+/g, " ").slice(0, 240);
+    throw new Error(
+      `${action} returned non-JSON response (${response.status} ${response.statusText}, ${contentType}): ${snippet}`
+    );
+  }
 }
 
 async function ensureDirectory(directoryPath) {
@@ -201,6 +215,14 @@ async function runRendererCommand(job, preparedFiles) {
   });
 }
 
+function getRendererDescription() {
+  if (demoRendererExecutable) {
+    return `${demoRendererExecutable} ${demoRendererArgs}`.trim();
+  }
+
+  return demoRendererCommand;
+}
+
 function splitCommandLine(commandLine) {
   const args = [];
   let current = "";
@@ -258,7 +280,7 @@ async function uploadArtifact(renderId, outputVideoPath) {
     body: formData
   });
 
-  const payload = await response.json();
+  const payload = await readJsonResponse(response, `upload artifact for render job ${renderId}`);
   if (!response.ok) {
     throw new Error(payload.error || "Unable to upload render artifact");
   }
@@ -292,7 +314,7 @@ async function processJob(job) {
     await updateStatus(job.id, "SEEKING_TICK");
     await logJob(job.id, "status -> SEEKING_TICK");
     await updateStatus(job.id, "CAPTURING");
-    await logJob(job.id, `status -> CAPTURING (running "${demoRendererCommand}")`);
+    await logJob(job.id, `status -> CAPTURING (running "${getRendererDescription()}")`);
     await runRendererCommand(job, preparedFiles);
     await logJob(job.id, "renderer command exited successfully");
     await assertOutputVideoExists(preparedFiles.outputVideoPath);
