@@ -26,7 +26,7 @@ This project is independent from the main Gamerfied repository. It does not use 
 ```bash
 npm install
 cp .env.example .env
-npm run prisma:migrate
+npm run prisma:push
 npm run dev
 ```
 
@@ -55,11 +55,13 @@ docker compose up -d postgres redis
 Example local env:
 
 ```env
-DATABASE_URL="postgresql://highlights:highlights@localhost:5433/gamerfied_highlights"
-REDIS_URL="redis://localhost:6380"
+DATABASE_URL="postgresql://highlights:highlights@127.0.0.1:5432/gamerfied_highlights"
+REDIS_URL=""
 UPLOAD_DIR="./uploads"
 APP_URL="http://localhost:3000"
 ```
+
+`npm run prisma:migrate` is available for environments where the configured database user can create Prisma shadow databases. For the default local bootstrap, use `npm run prisma:push`.
 
 ## Product Scope
 

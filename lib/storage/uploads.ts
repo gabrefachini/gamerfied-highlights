@@ -27,3 +27,15 @@ export async function saveDemoUpload(file: File) {
   });
   return filePath;
 }
+
+export async function deleteDemoUpload(filePath: string) {
+  try {
+    await fs.unlink(filePath);
+    console.info("[upload-debug] file-storage DELETE_SUCCESS", { filePath });
+  } catch (error) {
+    console.warn("[upload-debug] file-storage DELETE_FAILURE", {
+      filePath,
+      message: error instanceof Error ? error.message : "Unknown delete error"
+    });
+  }
+}

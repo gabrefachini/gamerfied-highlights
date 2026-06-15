@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SkinThemeController } from "@/components/SkinThemeController";
+import { Suspense } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,6 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <main className="shell">
+          <Suspense fallback={null}>
+            <SkinThemeController />
+          </Suspense>
           <nav className="topbar">
             <div className="topbar-inner">
               <a className="brand" href="/">

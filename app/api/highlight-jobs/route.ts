@@ -1,14 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { analyzeHighlightJob } from "@/lib/highlights/analyze";
 import { enqueueAnalysis } from "@/lib/highlights/queue";
+import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
-import { saveDemoUpload } from "@/lib/storage/uploads";
+import { deleteDemoUpload, saveDemoUpload } from "@/lib/storage/uploads";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   const traceId = crypto.randomUUID();
+  let demoFilePath: string | null = null;
   try {
     const formData = await request.formData();
     const demo = formData.get("demo");
@@ -30,7 +32,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Upload a .dem file or paste a match link" }, { status: 400 });
     }
 
-    const demoFilePath = demo instanceof File && demo.size > 0 ? await saveDemoUpload(demo) : null;
+    if (!env.databaseUrl) {
+      console.warn("[upload-debug] validation FAILURE", { traceId, error: "DATABASE_URL is not configured" });
+      return NextResponse.json({ error: "DATABASE_URL is not configured" }, { status: 500 });
+    }
+
+    demoFilePath = demo instanceof File && demo.size > 0 ? await saveDemoUpload(demo) : null;
     console.info("[upload-debug] file-storage SUCCESS", {
       traceId,
       filePath: demoFilePath,
@@ -66,6 +73,9 @@ export async function POST(request: NextRequest) {
     console.info("[upload-debug] response SUCCESS", { traceId, responsePayload });
     return NextResponse.json(responsePayload);
   } catch (error) {
+    if (demoFilePath) {
+      await deleteDemoUpload(demoFilePath);
+    }
     console.error("[upload-debug] pipeline FAILURE", {
       traceId,
       message: error instanceof Error ? error.message : "Unable to create highlight job",
