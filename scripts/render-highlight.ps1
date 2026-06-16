@@ -381,19 +381,30 @@ $hlaeArgs = @(
 Write-Log "launching HLAE custom loader"
 Write-Log "CS2 command line: $cs2CmdLine"
 $hlaeProcess = Start-Process -FilePath $hlaeExePath -ArgumentList $hlaeArgs -WorkingDirectory (Split-Path -Parent $hlaeExePath) -PassThru -WindowStyle Hidden
-$hlaeProcess.WaitForExit()
-Write-Log "HLAE process exited with code $($hlaeProcess.ExitCode)"
+Write-Log "HLAE started with PID $($hlaeProcess.Id)"
 
-if ($hlaeProcess.ExitCode -ne 0) {
-  throw "HLAE exited with code $($hlaeProcess.ExitCode) before the render started."
+try {
+  $cs2Process = Wait-ForProcessStart -ProcessName "cs2" -TimeoutSeconds $launchTimeoutSeconds
+}
+catch {
+  if ($hlaeProcess.HasExited) {
+    Write-Log "HLAE exited with code $($hlaeProcess.ExitCode) before CS2 started"
+    throw "CS2 did not start before HLAE exited. HLAE exit code: $($hlaeProcess.ExitCode)."
+  }
+
+  throw "CS2 did not start within $launchTimeoutSeconds seconds. HLAE is still running with PID $($hlaeProcess.Id); check for hidden HLAE/Steam dialogs or CS2 launch prompts."
 }
 
-$cs2Process = Wait-ForProcessStart -ProcessName "cs2" -TimeoutSeconds $launchTimeoutSeconds
 Write-Log "CS2 started with PID $($cs2Process.Id)"
 Write-Log "waiting up to $renderTimeoutSeconds seconds for CS2 to exit"
 
 Wait-ForProcessExit -Process $cs2Process -TimeoutSeconds $renderTimeoutSeconds
 Write-Log "CS2 exited"
+
+if (-not $hlaeProcess.HasExited) {
+  Write-Log "stopping HLAE process $($hlaeProcess.Id)"
+  Stop-Process -Id $hlaeProcess.Id -Force -ErrorAction SilentlyContinue
+}
 
 $takeDir = Get-LatestTakeDirectory -RecordNameBase $recordNameBase
 Write-Log "render output found in $takeDir"
